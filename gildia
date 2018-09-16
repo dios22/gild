@@ -3,9 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
-</head>
-<body>
-	<script type="text/javascript">
+		<script type="text/javascript">
 		var gildia = [];
 		var torg1 = new Array("Альтруист","сотрудничает",0);
 		var torg2 = new Array("Кидала","жульничает",0);
@@ -331,10 +329,6 @@
 			}
 		}
 	    }}
-		определениеочков();
-		/*for(i=0;i<gildia.length;i++){
-			document.write(gildia[i][2] + "<br/>");
-		}*/
 		function рейтинг ()	{	
 		for (;1<gildia.length;){
 	    for(var i =0;(i<=gildia.length-1);i++){
@@ -369,7 +363,6 @@
 	    		}
 	    		break;    			
 	    }}}}}
-	    рейтинг ();
 	    function наборвгильдию(){
 	    do{
 	    	gildia.splice(0,1)
@@ -440,23 +433,104 @@
 	    zp =0;
 	    y = 0;
 	    }
-	    наборвгильдию();
 	    function выводрезультата(){
-	    	alert("Количество альруистов, непредсказуемыx, кидал, хтрецов, злопамятнных , ушлых за " + god +" год равно: " + colvoaltr+" , " + colvonepred + " , "+colvokid+" , "+colvoxit + " , " + colvozp+" , " + colvoy);
+	    	alert("Количество альруистов, непредсказуемыx, кидал, херецов, злопамятнных , ушлых за " + god +" год равно: " + colvoaltr+" , " + colvonepred + " , "+colvokid+" , "+colvoxit + " , " + colvozp+" , " + colvoy);
 	    }
-	    выводрезультата();
-	   ot=parseInt(prompt("Через сколько лет хотите увидеть состав гильдии?"));
-	    while (ot>0){
-	    	определениеочков();
+	   //ot=parseInt(prompt("Через сколько лет хотите увидеть состав гильдии?"));
+	    	/*определениеочков();
 	    	рейтинг ();
 	    	наборвгильдию();
-	    	god++;    	
-	    	выводрезультата();
-	    	ot=ot-1;
-	    	if (ot == 0){
-	    		ot=parseInt(prompt("Вы хотите посмотреть еще изменение гильдии? Если да введите через сколько лет. Если нет введите 0"));
-	    	}
-	    }
+	    	god++;*/   	
+	    	/*ot=ot-1;
+	    	*if (ot == 0){
+	    	ot=parseInt(prompt("Вы хотите посмотреть еще изменение гильдии? Если да введите через сколько лет. Если нет введите 0"));
+	    	}*/
+	var c = 0;
+	function меняемчисла(строчка){
+		c = c +1;
+		строчка.innerHTML= "Колочиство купцов за "+c + " год" + "</br>"+
+		"Альтруисты: " + colvoaltr + "</br>" +
+		"Непредсказуемыx: " + colvonepred + "</br>" +
+		"Кидал: " + colvokid + "</br>"+ 
+		"Херецов: " + colvoxit + "</br>" +
+		"Злопамятнных: " + colvozp + "</br>" +
+		"Ушлых: " + colvoy + "</br>";
+		определениеочков();
+	    рейтинг ();
+	    наборвгильдию();
+	}
+	function числатаблицы(){
+		c = c +1;
+		document.getElementById("1").innerHTML=colvoaltr;
+		document.getElementById("0").innerHTML=c;
+		document.getElementById("2").innerHTML=colvonepred;
+		document.getElementById("3").innerHTML=colvokid;
+		document.getElementById("4").innerHTML=colvoxit;
+		document.getElementById("5").innerHTML=colvozp;
+		document.getElementById("6").innerHTML=colvoy;
+		определениеочков();
+	    рейтинг ();
+	    наборвгильдию();
+	}
+	function колволет(){
+		var colvolet= document.getElementById("колволет").value;
+		for(var i = 0;i<colvolet;i++){
+			c = c +1;
+			определениеочков();
+	        рейтинг ();
+	        наборвгильдию();
+		}
+		document.getElementById("0").innerHTML=c;
+		document.getElementById("1").innerHTML=colvoaltr;
+		document.getElementById("2").innerHTML=colvonepred;
+		document.getElementById("3").innerHTML=colvokid;
+		document.getElementById("4").innerHTML=colvoxit;
+		document.getElementById("5").innerHTML=colvozp;
+		document.getElementById("6").innerHTML=colvoy;
+	}
 	</script>
+</head>
+<body>
+	</br>
+	<table border="1">
+		<caption>Колочиство купцов за <span id="0">0</span> год</caption>
+		<tr>
+			<td width="90">Альтруисты:</td>
+			<td width="90" id="1">10</td>
+		</tr>
+		<tr>
+			<td width="90">Непредсказуемыx:</td>
+			<td width="90" id="2">10</td>
+		</tr>
+		<tr>
+			<td width="90">Кидал:</td>
+			<td width="90" id="3">10</td>
+		</tr>
+		<tr>
+			<td width="90">Херецов:</td>
+			<td width="90" id="4">10</td>
+		</tr>
+		<tr>
+			<td width="90">Злопамятнных:</td>
+			<td width="90" id="5">10</td>
+		</tr>
+		<tr>
+			<td width="90">Ушлых:</td>
+			<td width="90" id="6">10</td>
+		</tr>
+	</table>
+	<input type="button" name="b" value="Изменяем состав гильдии" onclick="числатаблицы()" />
+	<label for="">Через сколько лет хотите увидеть состав гильдии?</label><input type="number" id="колволет">
+	<input type="button" value="Посчитать" onclick="колволет()">
+    </br></br></br>
+	<span onclick="меняемчисла(this)">
+		Колочиство купцов за 0 год</br>
+	    Альтруисты: 10 </br>
+	    Непредсказуемыx: 10 </br>
+		Кидал: 10 </br>
+		Херецов: 10 </br>
+		Злопамятнных:  10 </br>
+		Ушлых: 10 </br>
+	</span>
 </body>
 </html>
